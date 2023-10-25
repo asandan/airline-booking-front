@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { signUpValidationSchema } from "./validation";
 import { DEFAULT_SIGNUP_VALUES } from "@/util";
 
+
 export const SignUpForm = () => {
   const { push } = useRouter();
   const {

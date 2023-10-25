@@ -3,9 +3,26 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { loginValidationSchema } from "./validation";
 import { DEFAULT_LOGIN_VALUES } from "@/util";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { IconButton, InputAdornment } from "@mui/material";
+import { useState } from "react";
 
 export const LoginForm = () => {
   const router = useRouter();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
+
+  const EndAdornment = (
+    <InputAdornment position="end">
+      <IconButton onClick={togglePasswordVisibility}>
+        {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+      </IconButton>
+    </InputAdornment>
+  );
 
   const {
     values,
@@ -40,12 +57,13 @@ export const LoginForm = () => {
         error={touched.email && !!errors.email}
         FormHelperTextProps={{ children: null }}
         helperText={touched.email ? errors.email : ""}
+        required
         fullWidth
       />
 
       <TextField
         label="Password"
-        type="password"
+        type={passwordVisible ? "text" : "password"}
         variant="outlined"
         margin="normal"
         name="password"
@@ -56,7 +74,11 @@ export const LoginForm = () => {
         FormHelperTextProps={{ children: null }}
         helperText={touched.password ? errors.password : ""}
         fullWidth
+        InputProps={{
+          endAdornment: EndAdornment,
+        }}
       />
+
       <div className="flex flex-col space-y-2">
         <Button
           disabled={!isValid || isSubmitting}
