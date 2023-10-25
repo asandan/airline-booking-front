@@ -1,5 +1,4 @@
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
 import { SignUpForm } from "@/components/Forms";
 import { CredentialsFooter } from "@/components/CredentialsFooter";
 

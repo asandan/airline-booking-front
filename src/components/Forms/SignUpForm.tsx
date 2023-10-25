@@ -2,14 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { signUpValidationSchema } from "./validation";
-
-//create default values for form
-const DEFAULT_VALUES = {
-  email: "",
-  phoneNumber: "",
-  name: "",
-  password: "",
-};
+import { DEFAULT_SIGNUP_VALUES } from "@/util";
 
 export const SignUpForm = () => {
   const { push } = useRouter();
@@ -23,7 +16,7 @@ export const SignUpForm = () => {
     isSubmitting,
     handleSubmit,
   } = useFormik({
-    initialValues: DEFAULT_VALUES,
+    initialValues: DEFAULT_SIGNUP_VALUES,
     enableReinitialize: true,
     isInitialValid: false,
     onSubmit: async (values, { resetForm }) => {

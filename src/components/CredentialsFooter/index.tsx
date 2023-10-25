@@ -2,8 +2,6 @@ import { CredentialsFooterProps } from "@/util/types";
 import Link from "next/link";
 import { FC } from "react";
 
-
-
 export const CredentialsFooter: FC<CredentialsFooterProps> = ({
   isLoginPage,
 }) => {

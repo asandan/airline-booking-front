@@ -2,11 +2,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { loginValidationSchema } from "./validation";
-
-const DEFAULT_VALUES = {
-  email: "",
-  password: "",
-};
+import { DEFAULT_LOGIN_VALUES } from "@/util";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -21,7 +17,7 @@ export const LoginForm = () => {
     isSubmitting,
     handleSubmit,
   } = useFormik({
-    initialValues: DEFAULT_VALUES,
+    initialValues: DEFAULT_LOGIN_VALUES,
     enableReinitialize: true,
     isInitialValid: false,
     onSubmit: async (values, { resetForm }) => {
