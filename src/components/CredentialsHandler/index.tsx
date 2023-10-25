@@ -13,6 +13,7 @@ export const CredentialsHandler: FC<CredentialsHandlerProps> = ({
   credentialsType,
 }) => {
   const CredentialsForm = credentialsTypes[credentialsType];
+  const header = credentialsType === "login" ? "LOG IN" : "SIGN UP";
   const isLoginPage = credentialsType === "login";
 
   return (
@@ -23,7 +24,7 @@ export const CredentialsHandler: FC<CredentialsHandlerProps> = ({
           gutterBottom
           className="text-3xl font-semibold text-center text-gray-800 mb-3 z-10"
         >
-          SIGN UP
+          {header}
         </Typography>
         <CredentialsForm />
         <CredentialsFooter isLoginPage={isLoginPage} />
