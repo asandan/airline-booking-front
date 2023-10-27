@@ -4,6 +4,7 @@ import { CredentialsFooter } from "../CredentialsFooter";
 import { FC } from "react";
 import { CredentialsHandlerProps } from "@/util/types";
 
+
 const credentialsTypes = {
   login: LoginForm,
   signUp: SignUpForm,
