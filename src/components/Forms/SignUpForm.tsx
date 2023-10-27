@@ -3,29 +3,16 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { signUpValidationSchema } from "./validation";
 import { DEFAULT_SIGNUP_VALUES } from "@/util";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { IconButton, InputAdornment } from "@mui/material";
 import { useState } from "react";
+import EndAdornment from "../EndAdornment";
 
 export const SignUpForm = () => {
   const router = useRouter();
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setPasswordVisible((prev) => !prev);
+    setIsPasswordVisible((prev) => !prev);
   };
-
-  const EndAdornment = (
-    <InputAdornment position="end">
-      <IconButton onClick={togglePasswordVisibility}>
-        {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
-      </IconButton>
-    </InputAdornment>
-  );
-
-
-
 
   const { push } = useRouter();
   const {
@@ -92,7 +79,7 @@ export const SignUpForm = () => {
       />
       <TextField
         label="Password"
-        type={passwordVisible ? "text" : "password"}
+        type={isPasswordVisible ? "text" : "password"}
         variant="outlined"
         margin="normal"
         name="password"
@@ -104,7 +91,12 @@ export const SignUpForm = () => {
         helperText={touched.password ? errors.password : ""}
         fullWidth
         InputProps={{
-          endAdornment: EndAdornment,
+          endAdornment: (
+            <EndAdornment
+              passwordVisible={isPasswordVisible}
+              togglePasswordVisibility={togglePasswordVisibility}
+            />
+          ),
         }}
       />
       <div className="flex flex-col space-y-2">
