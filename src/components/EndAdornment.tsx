@@ -8,7 +8,7 @@ interface EndAdornmentProps {
     togglePasswordVisibility: () => void;
   }
   
-  export default function EndAdornment({ passwordVisible, togglePasswordVisibility }: EndAdornmentProps) {
+  const EndAdornment = ({ passwordVisible, togglePasswordVisibility }: EndAdornmentProps) => {
     return (
       <InputAdornment position="end">
         <IconButton onClick={togglePasswordVisibility}>
@@ -17,4 +17,4 @@ interface EndAdornmentProps {
       </InputAdornment>
     );
   }
-  
+  export default EndAdornment
