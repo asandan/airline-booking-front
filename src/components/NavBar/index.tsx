@@ -1,22 +1,30 @@
 import { useLogout } from "@/hooks";
 import { Button } from "@mui/material";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const logout = useLogout();
 
   return (
     <nav className="bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        <Link href="/" passHref>
-          <h3 className="text-black font-bold text-xl no-underline">
-            Sky Travel
-          </h3>
+      <div className="container relative mx-[10vw] flex items-center justify-between p-4">
+        <Link href="/">
+          <Image
+            src={"/logo.png"}
+            quality={100}
+            width={150}
+            height={20}
+            className="relative right-40"
+            alt="logo"
+          />
         </Link>
         <div className="flex items-center">
           <Button
             variant="contained"
-            className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+            size="large"
+            color="secondary"
+            className="text-white px-3 py-1 rounded-lg"
             onClick={() => logout()}
           >
             Sign Out

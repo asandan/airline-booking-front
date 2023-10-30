@@ -24,8 +24,10 @@ export default function App({
   return (
     <ThemeProvider theme={theme}>
       <SessionProvider session={session}>
-        {!isLoginPage && <Navbar />}
-        <Component {...pageProps} />
+        <main className={`${isLoginPage && "overflow-hidden h-[100vh]"}`}>
+          {!isLoginPage && <Navbar />}
+          <Component {...pageProps} />
+        </main>
       </SessionProvider>
     </ThemeProvider>
   );
