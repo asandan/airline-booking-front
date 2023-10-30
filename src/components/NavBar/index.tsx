@@ -1,4 +1,5 @@
 import { useLogout } from "@/hooks";
+import { Button } from "@mui/material";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -13,12 +14,13 @@ const Navbar = () => {
           </h3>
         </Link>
         <div className="flex items-center">
-          <button
+          <Button
+            variant="contained"
             className="bg-blue-500 text-white px-3 py-1 rounded-lg"
             onClick={() => logout()}
           >
             Sign Out
-          </button>
+          </Button>
         </div>
       </div>
     </nav>
