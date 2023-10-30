@@ -1,3 +1,5 @@
+import { withSession } from "@/util";
+
 export default function MainPage() {
   return (
     <header className="bg-blue-500 text-white">
@@ -12,3 +14,7 @@ export default function MainPage() {
     </header>
   );
 }
+
+export const getServerSideProps = withSession(async function ({ req, res }) {
+  return { props: {} };
+});

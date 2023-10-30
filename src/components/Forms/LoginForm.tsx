@@ -2,7 +2,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { loginValidationSchema } from "./validation";
-import { DEFAULT_LOGIN_VALUES } from "@/util";
+import { DEFAULT_LOGIN_VALUES, login } from "@/util";
 import { useState } from "react";
 import EndAdornment from "../EndAdornment";
 
@@ -28,7 +28,12 @@ export const LoginForm = () => {
     enableReinitialize: true,
     isInitialValid: false,
     onSubmit: async (values, { resetForm }) => {
-      router.push("/");
+      const hasLoggedIn = await login(values);
+      if (hasLoggedIn) {
+        router.push("/");
+      } else {
+        resetForm();
+      }
     },
     validationSchema: loginValidationSchema,
   });
