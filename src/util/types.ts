@@ -16,3 +16,10 @@ export type EndAdornmentProps = {
   passwordVisible: boolean;
   togglePasswordVisibility: () => void;
 };
+
+export type SignUpCredentials = {
+  email: string;
+  password: string;
+  name: string;
+  phoneNumber: string;
+};

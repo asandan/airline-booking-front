@@ -13,15 +13,15 @@ export const CredentialsFooter: FC<CredentialsFooterProps> = ({
             Don{"'"}t have an account?{" "}
           </span>
           <Link href="/auth/sign-up">
-            <h5 className="text-blue-500 text-sm">Sign Up</h5>
+            <h5 className="text-[#101f3f] text-sm">Sign Up</h5>
           </Link>
         </section>
       ) : (
-        <section className="text-center mt-2">
+        <section className="text-center mt-2  flex flex-col">
           <span className="text-gray-600 text-sm">
             Already have an account?{" "}
           </span>
-          <Link href="/auth/login" className="text-blue-500 text-sm">
+          <Link href="/auth/login" className="text-[#101f3f] text-sm">
             Log In
           </Link>
         </section>

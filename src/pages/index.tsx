@@ -6,7 +6,7 @@ export default function MainPage() {
   return (
     <>
       <SEOHead title={"Home"} />
-      <header className="bg-blue-500 text-white p-10">
+      <header className="bg-[#101f3f] text-white p-10">
         <div className="flex justify-center items-center flex-col space-y-5">
           <h1 className="text-4xl font-bold">Airfare search</h1>
           <Button
