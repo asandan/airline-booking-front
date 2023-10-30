@@ -3,8 +3,17 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { signUpValidationSchema } from "./validation";
 import { DEFAULT_SIGNUP_VALUES } from "@/util";
+import { useState } from "react";
+import EndAdornment from "../EndAdornment";
 
 export const SignUpForm = () => {
+  const router = useRouter();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
   const { push } = useRouter();
   const {
     values,
@@ -70,7 +79,7 @@ export const SignUpForm = () => {
       />
       <TextField
         label="Password"
-        type="password"
+        type={isPasswordVisible ? "text" : "password"}
         variant="outlined"
         margin="normal"
         name="password"
@@ -81,6 +90,14 @@ export const SignUpForm = () => {
         FormHelperTextProps={{ children: null }}
         helperText={touched.password ? errors.password : ""}
         fullWidth
+        InputProps={{
+          endAdornment: (
+            <EndAdornment
+              passwordVisible={isPasswordVisible}
+              togglePasswordVisibility={togglePasswordVisibility}
+            />
+          ),
+        }}
       />
       <div className="flex flex-col space-y-2">
         <Button

@@ -5,3 +5,8 @@ export type CredentialsFooterProps = {
 export type CredentialsHandlerProps = {
   credentialsType: "login" | "signUp";
 };
+
+export type EndAdornmentProps = {
+  passwordVisible: boolean;
+  togglePasswordVisibility: () => void;
+}
