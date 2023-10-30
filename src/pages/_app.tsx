@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { SnackbarProvider } from "notistack";
 import { useEffect } from "react";
 
 export default function App({
@@ -24,10 +25,12 @@ export default function App({
   return (
     <ThemeProvider theme={theme}>
       <SessionProvider session={session}>
-        <main className={`${isLoginPage && "overflow-hidden h-[100vh]"}`}>
-          {!isLoginPage && <Navbar />}
-          <Component {...pageProps} />
-        </main>
+        <SnackbarProvider autoHideDuration={2000}>
+          <main className={`${isLoginPage && "overflow-hidden h-[100vh]"}`}>
+            {!isLoginPage && <Navbar />}
+            <Component {...pageProps} />
+          </main>
+        </SnackbarProvider>
       </SessionProvider>
     </ThemeProvider>
   );

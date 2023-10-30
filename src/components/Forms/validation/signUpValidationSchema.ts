@@ -7,10 +7,9 @@ const signUpValidationSchema = yup.object().shape({
     .min(3, "Minimal length - 3 symbols")
     .required("Enter your name"),
   phoneNumber: yup
-    .number()
+    .string()
     .min(11, "Invalid number")
     .max(11, "Invalid number")
-    .integer()
     .required("Phone number is required"),
   password: yup
     .string()

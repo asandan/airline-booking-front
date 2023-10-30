@@ -18,8 +18,8 @@ export const CredentialsHandler: FC<CredentialsHandlerProps> = ({
   const isLoginPage = credentialsType === "login";
 
   return (
-    <section className="flex items-center justify-center h-[100vh] bg-blue-300 text-white">
-      <div className="bg-white rounded-3xl p-6 w-[450px] shadow-lg">
+    <section className="flex items-center justify-center h-[100vh] bg-[#101f3f] text-white">
+      <div className="bg-zinc-200 rounded-3xl p-6 w-[450px] shadow-lg">
         <Typography
           variant="h4"
           gutterBottom

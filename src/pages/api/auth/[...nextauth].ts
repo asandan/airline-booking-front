@@ -14,7 +14,6 @@ export const authOptions: AuthOptions = {
         name: token!.name,
         email: token!.email,
       };
-      console.log("jwtClaims: ", jwtClaims);
       return jwt.sign(jwtClaims, secret, {
         expiresIn: "1h",
         algorithm: "HS512",

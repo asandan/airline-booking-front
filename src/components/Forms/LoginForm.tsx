@@ -7,10 +7,12 @@ import { loginValidationSchema } from "./validation";
 
 import { AuthFormProps } from "@/util/types";
 import EndAdornment from "../EndAdornment";
+import { useSnackbar } from "notistack";
 
 export const LoginForm: FC<AuthFormProps> = ({ setLoginError }) => {
   const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
@@ -32,6 +34,7 @@ export const LoginForm: FC<AuthFormProps> = ({ setLoginError }) => {
     onSubmit: async (values, { resetForm }) => {
       const hasLoggedIn = await login(values);
       if (hasLoggedIn) {
+        enqueueSnackbar("Logged in successfully!", { variant: "success" });
         router.push("/");
       } else {
         setLoginError(true);
@@ -85,9 +88,10 @@ export const LoginForm: FC<AuthFormProps> = ({ setLoginError }) => {
         <Button
           disabled={!isValid || isSubmitting}
           type="submit"
+          sx={{ "&:disabled": { color: "gray" } }}
           variant="contained"
           color="primary"
-          className="py-3 text-white font-semibold"
+          className="py-3 font-semibold"
         >
           Log in
         </Button>

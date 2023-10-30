@@ -3,13 +3,15 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { signUpValidationSchema } from "./validation";
 import { DEFAULT_SIGNUP_VALUES } from "@/util";
-import { FC, useState } from "react";
+import { useState } from "react";
 import EndAdornment from "../EndAdornment";
-import { AuthFormProps } from "@/util/types";
+import { signUp } from "@/mutations";
+import { useSnackbar } from "notistack";
 
 export const SignUpForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { push } = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
@@ -28,8 +30,12 @@ export const SignUpForm = () => {
     initialValues: DEFAULT_SIGNUP_VALUES,
     enableReinitialize: true,
     isInitialValid: false,
-    onSubmit: async (values, { resetForm }) => {
-      push("/login");
+    onSubmit: async (values) => {
+      const hasSignedUp = await signUp(values);
+      if (hasSignedUp) {
+        enqueueSnackbar("Signed up successfully!", { variant: "success" });
+        push("/auth/login");
+      }
     },
     validationSchema: signUpValidationSchema,
   });
@@ -102,6 +108,7 @@ export const SignUpForm = () => {
       <div className="flex flex-col space-y-2">
         <Button
           disabled={!isValid || isSubmitting}
+          sx={{ "&:disabled": { color: "gray" } }}
           type="submit"
           variant="contained"
           color="primary"
