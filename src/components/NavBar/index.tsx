@@ -1,7 +1,9 @@
-import Link from 'next/link';
-
+import { useLogout } from "@/hooks";
+import Link from "next/link";
 
 const Navbar = () => {
+  const logout = useLogout();
+
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -11,7 +13,10 @@ const Navbar = () => {
           </h3>
         </Link>
         <div className="flex items-center">
-          <button className="bg-blue-500 text-white px-3 py-1 rounded-lg">
+          <button
+            className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+            onClick={() => logout()}
+          >
             Sign Out
           </button>
         </div>
