@@ -1,12 +1,14 @@
-import { Button, TextField, Typography } from "@mui/material";
-import { useRouter } from "next/router";
-import { useFormik } from "formik";
-import { loginValidationSchema } from "./validation";
 import { DEFAULT_LOGIN_VALUES, login } from "@/util";
-import { useState } from "react";
+import { Button, TextField } from "@mui/material";
+import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import { FC, useState } from "react";
+import { loginValidationSchema } from "./validation";
+
+import { AuthFormProps } from "@/util/types";
 import EndAdornment from "../EndAdornment";
 
-export const LoginForm = () => {
+export const LoginForm: FC<AuthFormProps> = ({ setLoginError }) => {
   const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -32,6 +34,7 @@ export const LoginForm = () => {
       if (hasLoggedIn) {
         router.push("/");
       } else {
+        setLoginError(true);
         resetForm();
       }
     },

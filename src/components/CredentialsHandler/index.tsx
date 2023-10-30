@@ -1,9 +1,8 @@
-import { Typography } from "@mui/material";
+import { Alert, AlertTitle, Typography } from "@mui/material";
 import { SignUpForm, LoginForm } from "../Forms";
 import { CredentialsFooter } from "../CredentialsFooter";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CredentialsHandlerProps } from "@/util/types";
-
 
 const credentialsTypes = {
   login: LoginForm,
@@ -13,6 +12,7 @@ const credentialsTypes = {
 export const CredentialsHandler: FC<CredentialsHandlerProps> = ({
   credentialsType,
 }) => {
+  const [isLoginError, setIsLoginError] = useState(false);
   const CredentialsForm = credentialsTypes[credentialsType];
   const header = credentialsType === "login" ? "LOG IN" : "SIGN UP";
   const isLoginPage = credentialsType === "login";
@@ -27,7 +27,13 @@ export const CredentialsHandler: FC<CredentialsHandlerProps> = ({
         >
           {header}
         </Typography>
-        <CredentialsForm />
+        {isLoginError && (
+          <Alert className={"mb-3 w-full"} severity="error">
+            <AlertTitle>Error</AlertTitle>
+            Invalid credentials
+          </Alert>
+        )}
+        <CredentialsForm setLoginError={setIsLoginError} />
         <CredentialsFooter isLoginPage={isLoginPage} />
       </div>
     </main>

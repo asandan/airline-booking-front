@@ -25,7 +25,7 @@ export const login: Login = async ({ email, password }) => {
       }),
     });
 
-    return response.status === 200;
+    return !response.url.includes("error");
   } catch (error) {
     console.log("Login error", error);
     return false;
