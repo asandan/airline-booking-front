@@ -14,8 +14,6 @@ export const LoginForm = () => {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  
-
   const {
     values,
     isValid,
@@ -49,30 +47,31 @@ export const LoginForm = () => {
         error={touched.email && !!errors.email}
         FormHelperTextProps={{ children: null }}
         helperText={touched.email ? errors.email : ""}
-        required
         fullWidth
       />
 
-<TextField
-      label="Password"
-      type={isPasswordVisible ? "text" : "password"}
-      variant="outlined"
-      margin="normal"
-      name="password"
-      value={values.password}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      error={touched.password && !!errors.password}
-      FormHelperTextProps={{ children: null }}
-      helperText={touched.password ? errors.password : ""}
-      fullWidth
-      InputProps={{
-        endAdornment: <EndAdornment
-          passwordVisible={isPasswordVisible}
-          togglePasswordVisibility={togglePasswordVisibility}
-        />,
-      }}
-    />
+      <TextField
+        label="Password"
+        type={isPasswordVisible ? "text" : "password"}
+        variant="outlined"
+        margin="normal"
+        name="password"
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.password && !!errors.password}
+        FormHelperTextProps={{ children: null }}
+        helperText={touched.password ? errors.password : ""}
+        fullWidth
+        InputProps={{
+          endAdornment: (
+            <EndAdornment
+              passwordVisible={isPasswordVisible}
+              togglePasswordVisibility={togglePasswordVisibility}
+            />
+          ),
+        }}
+      />
 
       <div className="flex flex-col space-y-2">
         <Button
