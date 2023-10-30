@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 export default function LoginPage() {
-  console.log(process.env.NEXTAUTH_URL, process.env.NEXT_AUTH_SECRET)
   return <CredentialsHandler credentialsType="login" />;
 }
 
