@@ -2,7 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.navbar {
-    @apply bg-blue-500 text-white p-4;
-  }
-  
