@@ -3,18 +3,18 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { signUpValidationSchema } from "./validation";
 import { DEFAULT_SIGNUP_VALUES } from "@/util";
-import { useState } from "react";
+import { FC, useState } from "react";
 import EndAdornment from "../EndAdornment";
+import { AuthFormProps } from "@/util/types";
 
 export const SignUpForm = () => {
-  const router = useRouter();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { push } = useRouter();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  const { push } = useRouter();
   const {
     values,
     isValid,
