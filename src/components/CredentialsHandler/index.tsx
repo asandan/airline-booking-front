@@ -19,7 +19,7 @@ export const CredentialsHandler: FC<CredentialsHandlerProps> = ({
 
   return (
     <section className="flex items-center justify-center h-[100vh] bg-[#101f3f] text-white">
-      <div className="bg-white rounded-3xl p-6 w-[450px] shadow-lg">
+      <div className="bg-zinc-200 rounded-3xl p-6 w-[450px] shadow-lg">
         <Typography
           variant="h4"
           gutterBottom
