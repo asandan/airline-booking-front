@@ -19,6 +19,9 @@ export default function App({
   useEffect(() => {
     if (!session) {
       router.push("/auth/login");
+      if (localStorage.getItem("email")) {
+        localStorage.removeItem("email");
+      }
     }
   }, []);
 
