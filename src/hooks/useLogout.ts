@@ -10,5 +10,6 @@ export const useLogout = () => {
       redirect: false,
     });
     push("/auth/login");
+    localStorage.removeItem("email");
   }, []);
 };

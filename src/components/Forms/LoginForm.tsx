@@ -34,6 +34,7 @@ export const LoginForm: FC<AuthFormProps> = ({ setLoginError }) => {
     onSubmit: async (values, { resetForm }) => {
       const hasLoggedIn = await login(values);
       if (hasLoggedIn) {
+        localStorage.setItem("email", JSON.stringify(values.email));
         enqueueSnackbar("Logged in successfully!", { variant: "success" });
         router.push("/");
       } else {
