@@ -5,6 +5,7 @@ import Image from "next/image";
 
 const Navbar = () => {
   const logout = useLogout();
+  const userEmail = JSON.parse(localStorage.getItem("email") as string);
 
   return (
     <nav className="bg-white shadow-md">
@@ -19,7 +20,10 @@ const Navbar = () => {
             alt="logo"
           />
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-5">
+          <span className="text-[#101f3f] cursor-pointer font-semibold">
+            {userEmail}
+          </span>
           <Button
             variant="contained"
             size="large"
