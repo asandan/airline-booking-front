@@ -2,10 +2,14 @@ import { useLogout } from "@/hooks";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const logout = useLogout();
-  const userEmail = JSON.parse(localStorage.getItem("email") as string);
+  const [userEmail, setUserEmail] = useState<undefined | string>();
+  useEffect(() => {
+    setUserEmail(JSON.parse(localStorage.getItem("email") as string));
+  }, []);
 
   return (
     <nav className="bg-white shadow-md">

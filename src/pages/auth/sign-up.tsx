@@ -5,6 +5,7 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import { SEOHead } from "@/components/SEOHead";
 
 export default function SignUpPage() {
+    
   return (
     <>
       <SEOHead title={"Sign up"} />
