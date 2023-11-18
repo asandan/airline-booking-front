@@ -9,10 +9,11 @@ export const authOptions: AuthOptions = {
   jwt: {
     async encode(params: JWTEncodeParams): Promise<string> {
       const { token, secret } = params;
+      console.log("PARAMS", params)
       const jwtClaims = {
-        id: token!.id,
-        name: token!.name,
-        email: token!.email,
+        id: token?.id,
+        name: token?.name,
+        email: token?.email,
       };
       return jwt.sign(jwtClaims, secret, {
         expiresIn: "1h",
@@ -36,6 +37,7 @@ export const authOptions: AuthOptions = {
       name: "Credentials",
       type: "credentials",
       credentials: {
+        id: { label: "id", type: "number" },
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
@@ -50,6 +52,10 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
         token.accessToken = user.token;
+      }
+      
+      if (user?.id) {
+        token.id = user.id;
       }
 
       return Promise.resolve(token);

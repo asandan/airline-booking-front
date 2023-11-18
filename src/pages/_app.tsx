@@ -1,6 +1,7 @@
 import Navbar from "@/components/NavBar";
 import "@/styles/globals.css";
 import { themeObject } from "@/util";
+import { QueryClient } from "@/util/HOCs";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
@@ -29,10 +30,16 @@ export default function App({
     <ThemeProvider theme={theme}>
       <SessionProvider session={session}>
         <SnackbarProvider autoHideDuration={2000}>
-          <main className={`${isLoginPage && "overflow-hidden h-[100vh]"}`}>
-            {!isLoginPage && <Navbar />}
-            <Component {...pageProps} />
-          </main>
+          <QueryClient>
+            <main
+              className={`${
+                isLoginPage && "overflow-hidden"
+              } h-[100vh] overflow-hidden`}
+            >
+              {!isLoginPage && <Navbar />}
+              <Component {...pageProps} />
+            </main>
+          </QueryClient>
         </SnackbarProvider>
       </SessionProvider>
     </ThemeProvider>
